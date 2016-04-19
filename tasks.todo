@@ -1,0 +1,15 @@
+Tasks:
+  ☐ add normalize.css (or any other css reset)
+  ☐ UI prototype
+    ☐ list of available resources
+      ☐ each resource should be shown with Method and URL
+      ☐ add Delete, Edit buttons
+      ☐ i.e [method:<badge>] [url:<text>] [Delete:<button>] [Edit:<button>]
+    ☐ adding new resource functionality
+      ☐ add 'Create' button to create new resource
+      ☐ user will be able to choose the method (GET, POST etc.) and provide URL with JSON.
+    ☐ implement Edit resource button
+    ☐ implement Delete resource button
+  ☐ [tools] add JavaScript linter
+  ☐ [tools] add sass
+  ☐ [tools] add livereload
