@@ -1,0 +1,21 @@
+{
+  "name": "gimme-json-frontend",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "vladimir <edoomik@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.5",
+    "angular-ui-router": "^0.2.18"
+  }
+}
