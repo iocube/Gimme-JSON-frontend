@@ -1,2 +1,11 @@
 Hello Resource.
 <span ng-bind="self.message"></span>
+
+<h3>Resources <button ng-click="self.create()">Create</button></h3>
+
+<div ng-repeat="resource in self.resources">
+  <span ng-repeat="method in resource.methods" ng-bind="method"></span>
+  <input type="text" ng-model="resource.endpoint" ng-blur="self.saveEndpoint(resource._id.$oid, resource.endpoint)"></span>
+  <textarea ng-bind="resource.response" ng-blur="self.saveResponse(resource._id.$oid, resource.response)"></textarea>
+  <button ng-click="self.remove(resource._id.$oid)">Remove</button>
+</div>
