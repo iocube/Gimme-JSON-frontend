@@ -1,13 +1,36 @@
-Hello Resource.
-<span ng-bind="self.message"></span>
-
-<h3>Resources <button ng-click="self.create()">Create</button></h3>
-
-<div ng-repeat="resource in self.resources">
-  <http-methods-input methods="resource.methods"></http-methods-input>
+<!-- <div ng-repeat="resource in self.resources">
   <input type="text" ng-model="resource.endpoint"></span>
   <textarea ng-model="resource.response"></textarea>
-  <button ng-click="self.save(resource)">Save</button>
-  <button ng-click="self.edit(resource)">Edit</button>
-  <button ng-click="self.remove($index)">Remove</button>
-</div>
+</div> -->
+
+<table>
+  <tr>
+    <th class="table__cell table--header">Methods</th>
+    <th class="table__cell table--header">Endpoint</th>
+    <th class="table__cell table--header">Actions</th>
+  </tr>
+
+  <tr ng-repeat="resource in self.resources" ng-class="{'table--odd': $odd, 'table--even': $even}">
+    <td class="table__cell">
+      <span ng-repeat="method in resource.methods"
+        class="badge"
+        ng-class="{'badge--green': method === 'GET',
+        'badge--orange': method === 'POST',
+        'badge--blue': method === 'PATCH',
+        'badge--purple': method === 'PUT',
+        'badge--red': method === 'DELETE'}">{{method}}</span>
+      <!-- <http-methods-input methods="resource.methods" is-read-only="true"></http-methods-input> -->
+    </td>
+    <td class="table__cell">
+      <span ng-bind="resource.endpoint"></span>
+    </td>
+
+    <td class="table__cell">
+      <i class="fa fa-pencil pointer u-padding-xs-right" ng-click="self.edit(resource)"></i>
+      <i class="fa fa-trash-o pointer" ng-click="self.remove($index)"></i>
+    </td>
+
+  </tr>
+</table>
+
+<button class="button__add" ng-click="self.create()"><i class="fa fa-plus" aria-hidden="true"></i></button>

@@ -1,12 +1,88 @@
-.method-input {
+/* base styles */
+table {
+  width: 100%;
+}
+
+table tr:hover {
+  background-color: #E2E2E2;
+}
+
+.table__cell {
+  padding: 15px 30px;
+  text-align: left;
+}
+
+.table--odd {
+  background-color: #F5F5F5;
+}
+
+.table--even {
+  background: #FCFCFC;
+}
+
+.table--header {
+  background: #F0F0F0;
+}
+
+/* ui components */
+.badge {
+  font-size: 12px;
+  color: #FFF;
   padding: 4px;
   border: 1px solid transparent;
 }
 
-.method-input:hover {
+.badge--active {
+  border: 1px solid #000;
+}
+
+.badge--green {
+  background-color: #4CAF50;
+}
+
+.badge--orange {
+  background-color: #FF9800;
+}
+
+.badge--blue {
+  background-color: #2196F3;
+}
+
+.badge--red {
+  background-color: #F44336;
+}
+
+.badge--purple {
+  background-color: #9C27B0;
+}
+
+
+/* utility */
+.pointer {
+  cursor: pointer;
+}
+
+.u-padding-xs-right {
+  padding-right: 10px;
+}
+
+button {
+    outline: none;
     cursor: pointer;
 }
 
-.method-input--active {
-  border: 1px solid #000;
+.button__add {
+  border-radius: 25px;
+  border-style: none;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 10px;
+  opacity: 0.5;
+  left: 10px;
+  background: #F0F0F0;
+}
+
+.button__add:hover {
+  opacity: 1;
 }

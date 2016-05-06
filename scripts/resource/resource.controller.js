@@ -19,7 +19,7 @@
           'queryParams': []
         }
 
-        resourceAPIService.post(newResource).then(function() {
+        resourceAPIService.post(newResource).then(function(resource) {
           self.resources.push(resource);
         });
       }
