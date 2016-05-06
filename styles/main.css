@@ -1,0 +1,12 @@
+.method-input {
+  padding: 4px;
+  border: 1px solid transparent;
+}
+
+.method-input:hover {
+    cursor: pointer;
+}
+
+.method-input--active {
+  border: 1px solid #000;
+}

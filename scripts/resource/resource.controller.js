@@ -7,83 +7,34 @@
   function ResourceController(resourceAPIService) {
       var self = this;
 
-      self.message = "I Am Resource Controller";
-      self.resources = [
-      {
-        "methods": [
-          "GET",
-          "POST"
-        ],
-        "_id": {
-          "$oid": "571b7cfdeceefb4a395ef433"
-        },
-        "endpoint": "/api/v1/people",
-        "queryParams": [],
-        "response": "[{\"name\": \"Alice\", \"city\": \"Berlin\"}, {\"name\": \"Bob\", \"city\": \"Tel-Aviv\"}, {\"name\": \"Charlie\", \"city\": \"Paris\"}]"
-      },
-      {
-        "methods": [
-          "GET"
-        ],
-        "_id": {
-          "$oid": "571b7cfdeceefb4a395ef434"
-        },
-        "endpoint": "/api/v1/people/<string:pid>",
-        "queryParams": [],
-        "response": "{\"name\": \"Alice\", \"city\": \"Berlin\"}"
-      },
-      {
-        "methods": [
-          "POST"
-        ],
-        "_id": {
-          "$oid": "571b7cfdeceefb4a395ef435"
-        },
-        "endpoint": "/api/v1/people/<string:pid>",
-        "queryParams": [],
-        "response": "{\"name\": \"Alice\", \"city\": \"Tel-Aviv\"}"
-      }
-    ]
+      resourceAPIService.get().then(function(resources) {
+        self.resources = resources;
+      })
 
       self.create = function() {
-        // make post request to create new resource
-        resourceAPIService.post()
-
-        var resource = {
-          '_id': {
-            '$oid': String(Date.now())
-          },
+        var newResource = {
           'endpoint': '/api/v1/',
           'methods': ['GET'],
-          'response': '',
+          'response': '{}',
           'queryParams': []
         }
 
-        self.resources.push(resource)
+        resourceAPIService.post(newResource).then(function() {
+          self.resources.push(resource);
+        });
       }
 
-      self.remove = function(resourceId) {
-        var resourceIndex = -1;
-
-        for (var i = 0, max = self.resources.length; i < max; i += 1) {
-          if (self.resources[i]._id.$oid === resourceId) {
-            resourceIndex = i;
-            break;
-          }
-        }
-
-        self.resources.splice(i, 1);
-        // TODO: make request to remove the resource
+      self.remove = function(resourceIndex) {
+        var resourceId = self.resources[resourceIndex]['_id']['$oid'];
+        resourceAPIService.remove(resourceId).then(function() {
+          self.resources.splice(resourceIndex, 1);
+        });
       }
 
-      self.saveEndpoint = function(resourceId, changes) {
-        // TODO: make patch request
-        console.log('new endpoint: ' + resourceId, 'changes: ' + changes)
+      self.save = function(resource) {
+        resourceAPIService.put(resource._id.$oid, resource);
       }
 
-      self.saveResponse = function(resourceId, changes) {
-        // TODO: make patch request
-        console.log('new response: ' + resourceId, 'changes: ' + changes)
-      }
+      self.edit = function(resource) {}
   }
 })();

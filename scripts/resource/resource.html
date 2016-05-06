@@ -4,8 +4,10 @@ Hello Resource.
 <h3>Resources <button ng-click="self.create()">Create</button></h3>
 
 <div ng-repeat="resource in self.resources">
-  <span ng-repeat="method in resource.methods" ng-bind="method"></span>
-  <input type="text" ng-model="resource.endpoint" ng-blur="self.saveEndpoint(resource._id.$oid, resource.endpoint)"></span>
-  <textarea ng-bind="resource.response" ng-blur="self.saveResponse(resource._id.$oid, resource.response)"></textarea>
-  <button ng-click="self.remove(resource._id.$oid)">Remove</button>
+  <http-methods-input methods="resource.methods"></http-methods-input>
+  <input type="text" ng-model="resource.endpoint"></span>
+  <textarea ng-model="resource.response"></textarea>
+  <button ng-click="self.save(resource)">Save</button>
+  <button ng-click="self.edit(resource)">Edit</button>
+  <button ng-click="self.remove($index)">Remove</button>
 </div>

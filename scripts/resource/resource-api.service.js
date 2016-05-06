@@ -2,14 +2,32 @@
   'use strict';
 
   angular.module('gimmeJSONApp').factory('resourceAPIService', resourceAPIService);
-  resourceAPIService.$inject = [];
+  resourceAPIService.$inject = ['Restangular', 'BACKEND_ENDPOINT'];
 
-  function resourceAPIService() {
+  function resourceAPIService(Restangular, BACKEND_ENDPOINT) {
+    var baseEndpoint = Restangular.all('/resource');
+
+    function get() {
+      return baseEndpoint.getList();
+    }
+
+    function post(payload) {
+      return baseEndpoint.post(payload);
+    }
+
+    function remove(resourceId) {
+      return baseEndpoint.one(resourceId).remove();
+    }
+
+    function put(resourceId, payload) {
+      return baseEndpoint.one(resourceId).customPUT(payload);
+    }
+
     return {
-      get: function() { console.log('get'); },
-      post: function() { console.log('post'); },
-      delete: function() { console.log('post'); },
-      patch: function() { console.log('patch'); }
+      get: get,
+      post: post,
+      remove: remove,
+      put: put
     }
   }
 })();
