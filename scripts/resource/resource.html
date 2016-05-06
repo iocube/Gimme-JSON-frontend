@@ -1,8 +1,29 @@
-<!-- <div ng-repeat="resource in self.resources">
-  <input type="text" ng-model="resource.endpoint"></span>
-  <textarea ng-model="resource.response"></textarea>
-</div> -->
+<!-- edit resource panel -->
+<section class="panel-edit panel-edit--vertical-split" ng-class="{'panel-edit--open': self.isPanelOpen}">
+  <i class="fa fa-times panel-edit__close u-pointer" ng-click="self.closePanel()"></i>
 
+  <div class="panel-edit__container">
+    <div class="input-group">
+      <label for="panel-edit__endpoint" class="input-group__label">Endpoint</label>
+      <input id="panel-edit__endpoint" class="input-group__input" ng-model="resourceEdit.endpoint">
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label">Methods</label>
+      <http-methods-input methods="self.resourceEdit.methods" class="u-block"></http-methods-input>
+    </div>
+
+    <div class="input-group">
+      <label for="panel-edit__response" class="input-group__label">Response</label>
+      <textarea id="panel-edit__response" class="input-group__textarea" ng-model="resourceEdit.response"></textarea>
+    </div>
+
+    <button class="btn btn--save">Save</button>
+    <button class="btn btn--cancel" ng-click="self.closePanel()">Cancel</button>
+  </div>
+</section>
+
+<!-- resources list -->
 <table>
   <tr>
     <th class="table__cell table--header">Methods</th>
@@ -19,18 +40,18 @@
         'badge--blue': method === 'PATCH',
         'badge--purple': method === 'PUT',
         'badge--red': method === 'DELETE'}">{{method}}</span>
-      <!-- <http-methods-input methods="resource.methods" is-read-only="true"></http-methods-input> -->
     </td>
+
     <td class="table__cell">
       <span ng-bind="resource.endpoint"></span>
     </td>
 
     <td class="table__cell">
-      <i class="fa fa-pencil pointer u-padding-xs-right" ng-click="self.edit(resource)"></i>
-      <i class="fa fa-trash-o pointer" ng-click="self.remove($index)"></i>
+      <i class="fa fa-pencil u-pointer u-padding-xs-right" ng-click="self.openPanel()"></i>
+      <i class="fa fa-trash-o u-pointer" ng-click="self.remove($index)"></i>
     </td>
-
   </tr>
 </table>
 
-<button class="button__add" ng-click="self.create()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+<!-- create new resource -->
+<button class="btn btn--add" ng-click="self.create()"><i class="fa fa-plus" aria-hidden="true"></i></button>
