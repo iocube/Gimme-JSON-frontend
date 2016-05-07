@@ -1,0 +1,7 @@
+<div id="{{DIALOG_ID}}" class="dialog">
+  <div class="dialog__body">{{body}}</div>
+  <div class="dialog__actions">
+    <button class="btn btn--save btn--xs" ng-click="onAcceptWrapper()" ng-disabled="self.isSaving">Remove</button>
+    <button class="btn btn--cancel btn--xs" ng-click="onCancelWrapper()" ng-disabled="self.isSaving">Cancel</button>
+  </div>
+</div>

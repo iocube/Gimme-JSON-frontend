@@ -184,11 +184,38 @@ button:disabled {
     border-color: #0c85e6;
 }
 
+.btn--xs {
+  font-size: 12px;
+}
+
 .fa-exclamation {
   position: relative;
   top: 30px;
   right: 10px;
   color: #F44336;
+}
+
+.dialog {
+  position: absolute;
+  background: #FFF;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 25px;
+  width: 280px;
+  min-height: 110px;
+  border: 1px solid #fff;
+  box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
+
+.dialog__body {
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.dialog__actions {
+  text-align: center;
+  float: right;
 }
 
 /* utility */

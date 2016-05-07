@@ -53,10 +53,10 @@
 
     <td class="table__cell">
       <i class="fa fa-pencil u-pointer u-padding-xs-right" ng-click="self.edit(resource); self.openPanel()"></i>
-      <i class="fa fa-trash-o u-pointer" ng-click="self.remove($index)"></i>
+      <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove($index)" body="Remove resource?"></i>
     </td>
   </tr>
 </table>
 
 <!-- create new resource -->
-<button class="btn btn--add" ng-click="self.create()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+<button class="btn btn--add" ng-click="self.create()"><i class="fa fa-plus"></i></button>
