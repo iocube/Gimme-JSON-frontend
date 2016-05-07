@@ -2,10 +2,12 @@
 <section class="panel-edit panel-edit--vertical-split" ng-class="{'panel-edit--open': self.isPanelOpen}">
   <i class="fa fa-times panel-edit__close u-pointer" ng-click="self.closePanel()"></i>
 
-  <div class="panel-edit__container">
+  <form name="form" class="panel-edit__container" novalidate>
     <div class="input-group">
       <label for="panel-edit__endpoint" class="input-group__label">Endpoint</label>
-      <input id="panel-edit__endpoint" class="input-group__input" ng-model="resourceEdit.endpoint">
+      <span class="u-validation-error" ng-show="form.endpoint.$error.required">Endpoint is required.</span>
+      <span class="u-validation-error" ng-bind="self.resourceEditErrors.endpoint[0]" ng-show="self.resourceEditErrors.endpoint"></span>
+      <input id="panel-edit__endpoint" class="input-group__input" name="endpoint" ng-model="self.resourceEdit.endpoint" maxlength="255" required endpoint-validator>
     </div>
 
     <div class="input-group">
@@ -15,12 +17,15 @@
 
     <div class="input-group">
       <label for="panel-edit__response" class="input-group__label">Response</label>
-      <textarea id="panel-edit__response" class="input-group__textarea" ng-model="resourceEdit.response"></textarea>
+      <span class="u-validation-error" ng-show="form.response.$error.required">Response is required.</span>
+      <span class="u-validation-error" ng-show="form.response.$error.response">Response should be valid JSON.</span>
+      <span class="u-validation-error" ng-bind="self.resourceEditErrors.response" ng-show="form.$error.response"></span>
+      <textarea id="panel-edit__response" class="input-group__textarea" name="response" ng-model="self.resourceEdit.response" required response-validator></textarea>
     </div>
 
-    <button class="btn btn--save">Save</button>
+    <button class="btn btn--save" ng-click="self.save(self.resourceEdit)" ng-disabled="form.$invalid || self.isSaving"><i class="fa fa-refresh fa-spin" ng-show="self.isSaving"></i>Save</button>
     <button class="btn btn--cancel" ng-click="self.closePanel()">Cancel</button>
-  </div>
+  </form>
 </section>
 
 <!-- resources list -->
@@ -47,7 +52,7 @@
     </td>
 
     <td class="table__cell">
-      <i class="fa fa-pencil u-pointer u-padding-xs-right" ng-click="self.openPanel()"></i>
+      <i class="fa fa-pencil u-pointer u-padding-xs-right" ng-click="self.edit(resource); self.openPanel()"></i>
       <i class="fa fa-trash-o u-pointer" ng-click="self.remove($index)"></i>
     </td>
   </tr>

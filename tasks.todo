@@ -9,7 +9,14 @@ Tasks:
   ☐ add validation and error handling for all creating/editing/deleting operations
   ✔ [ui] list all resources @done(2016-05-06 11:40) @project(Tasks)
   ✔ [ui] add panel for resource modification @done(2016-05-06 16:33) @project(Tasks)
-  ☐ make panel functional
+  ✔ make panel functional @done(2016-05-07 11:49) @project(Tasks)
   ☐ find tool for editing JSON's and embed it
   ☐ [ui] allow panel resizing?
   ☐ [ui] ask user for confirmation on deletion
+  ☐ unit tests
+  ☐ [ui] endpoint input field is 'jumping' when focused
+  ☐ [ui] badges should be sorted
+  ☐ [ui] Panel 'Cancel' button -> 'Close'
+  ☐ after clicking on '+' (create new resource) then open this resource in a edit panel.
+  ☐ [ui] add 'Delete' button to edit panel
+  ☐ [ui] make that clicking on resource in the resources list opens edit panel

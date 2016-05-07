@@ -27,7 +27,9 @@
       var idx = self.find(method);
 
       if (idx >= 0) {
-        self.methods.splice(idx, 1);
+        if (!self.isLastActiveMethod()) {
+          self.methods.splice(idx, 1);
+        }
       } else {
         self.methods.push(method);
       }
@@ -39,6 +41,10 @@
 
     self.isActive = function(method) {
       return self.find(method) >= 0;
+    }
+
+    self.isLastActiveMethod = function() {
+      return self.methods.length === 1;
     }
   }
 })();

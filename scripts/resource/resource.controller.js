@@ -2,9 +2,9 @@
   'use strict';
 
   angular.module('gimmeJSONApp').controller('ResourceController', ResourceController);
-  ResourceController.$inject = ['resourceAPIService'];
+  ResourceController.$inject = ['resourceAPIService', '$timeout'];
 
-  function ResourceController(resourceAPIService) {
+  function ResourceController(resourceAPIService, $timeout) {
       var self = this;
 
       self.isPanelOpen = false;
@@ -35,10 +35,23 @@
       }
 
       self.save = function(resource) {
-        resourceAPIService.put(resource._id.$oid, resource);
+        self.isSaving = true;
+        var promise = resourceAPIService.put(resource._id.$oid, resource);
+
+        promise.then(null, function(error) {
+          self.resourceEditErrors = error;
+        })
+
+        promise.finally(function() {
+          $timeout(function() {
+            self.isSaving = false;
+          }, 1000);
+        })
       }
 
       self.edit = function(resource) {
+        var draft = cloneResource(resource.plain())
+        self.resourceEdit = draft;
       }
 
       self.openPanel = function() {
@@ -49,11 +62,17 @@
         self.isPanelOpen = false;
       }
 
+      var cloneResource = function(resource) {
+        return angular.copy(resource);
+      }
+
       self.resourceEdit = {
         'endpoint': '/api/v1/',
         'methods': ['GET'],
         'response': '{}',
         'queryParams': []
-      }
+      };
+
+      self.resourceEditErrors = {};
   }
 })();

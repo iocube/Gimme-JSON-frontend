@@ -79,6 +79,11 @@ button:focus {
   outline: none;
 }
 
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 /* ui components */
 .badge {
   font-size: 12px;
@@ -179,6 +184,13 @@ button:focus {
     border-color: #0c85e6;
 }
 
+.fa-exclamation {
+  position: relative;
+  top: 30px;
+  right: 10px;
+  color: #F44336;
+}
+
 /* utility */
 .u-pointer {
   cursor: pointer;
@@ -190,4 +202,19 @@ button:focus {
 
 .u-block {
     display: block;
+}
+
+.u-validation-error {
+  font-size: 12px;
+  color: #F44336;
+}
+
+/* override */
+input.ng-invalid,
+textarea.ng-invalid {
+  border: 1px solid #F44336;
+}
+
+.fa-refresh {
+  margin-right: 5px;
 }
