@@ -7,7 +7,7 @@
       <label for="panel-edit__endpoint" class="input-group__label">Endpoint</label>
       <span class="u-validation-error" ng-show="form.endpoint.$error.required">Endpoint is required.</span>
       <span class="u-validation-error" ng-bind="self.resourceEditErrors.endpoint[0]" ng-show="self.resourceEditErrors.endpoint"></span>
-      <input id="panel-edit__endpoint" class="input-group__input" name="endpoint" ng-model="self.resourceEdit.endpoint" maxlength="255" required endpoint-validator>
+      <input spellcheck="false" id="panel-edit__endpoint" class="input-group__input" name="endpoint" ng-model="self.resourceEdit.endpoint" maxlength="255" required endpoint-validator>
     </div>
 
     <div class="input-group">
