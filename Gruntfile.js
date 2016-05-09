@@ -17,11 +17,18 @@ module.exports = function(grunt) {
           }
 				}
 			}
+		},
+		karma: {
+		  unit: {
+		    configFile: 'karma.conf.js'
+		  }
 		}
 	});
 
 	grunt.registerTask('default', []);
 	grunt.registerTask('serve', ['connect']);
+	grunt.registerTask('test', ['karma']);
 
 	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-karma');
 }

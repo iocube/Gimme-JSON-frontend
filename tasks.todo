@@ -11,13 +11,17 @@ Tasks:
   ✔ [ui] add panel for resource modification @done(2016-05-06 16:33) @project(Tasks)
   ✔ make panel functional @done(2016-05-07 11:49) @project(Tasks)
   ☐ find tool for editing JSON's and embed it
-  ☐ [ui] allow panel resizing?
+  ☐ [feature,?] allow panel resizing
   ✔ [ui] ask user for confirmation on deletion @done(2016-05-07 18:16) @project(Tasks)
-  ☐ unit tests
-  ☐ [ui] endpoint input field is 'jumping' when focused
-  ☐ [ui] badges should be sorted
-  ☐ [ui] Panel 'Cancel' button -> 'Close'
-  ☐ after clicking on '+' (create new resource) then open this resource in a edit panel.
-  ☐ [ui] add 'Delete' button to edit panel
-  ☐ [ui] make that clicking on resource in the resources list opens edit panel
-  ☐ separate CSS into smaller files
+  ☐ [tools] add unit tests
+  ✔ [tools] unit tests environment setup @done(2016-05-09 11:06) @project(Tasks)
+  ☐ [tools] add test coverage
+  ☐ [bug] endpoint input field is 'jumping' when focused
+  ☐ [bug] badges should be sorted
+  ☐ [feature] change panel 'Cancel' button to 'Close'
+  ☐ [feature] after clicking on '+' (create new resource) then open this resource in a edit panel.
+  ☐ [feature] add 'Delete' button to edit panel
+  ☐ [feature] make that clicking on resource in the resources list opens edit panel
+  ☐ [refactoring] separate CSS into smaller files
+  ☐ [bug] saved changes to a resource in the edit panel not updated in the resources list
+  ☐ [bug] when creating new resource, edit panel shows previous resource information
