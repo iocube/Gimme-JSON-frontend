@@ -38,7 +38,9 @@
         self.isSaving = true;
         var promise = resourceAPIService.put(resource._id.$oid, resource);
 
-        promise.then(null, function(error) {
+        promise.then(function(updatedResource) {
+          updateResourceInCollection(self.resources, updatedResource);
+        }, function(error) {
           self.resourceEditErrors = error;
         })
 
@@ -47,6 +49,22 @@
             self.isSaving = false;
           }, 1000);
         })
+      }
+
+      var findIndexById = function(resourcesList, resourceId) {
+        for (var i = 0, max = resourcesList.length; i < max; i += 1) {
+          if (resourcesList[i]._id.$oid === resourceId) {
+            return i;
+          }
+        }
+      }
+
+      var updateResourceInCollection = function(resourcesList, resource) {
+        var idx = findIndexById(resourcesList, resource._id.$oid);
+
+        if (idx >= 0) {
+          resourcesList.splice(idx, 1, resource);
+        }
       }
 
       self.edit = function(resource) {

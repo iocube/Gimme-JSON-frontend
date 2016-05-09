@@ -23,5 +23,6 @@ Tasks:
   ☐ [feature] add 'Delete' button to edit panel
   ☐ [feature] make that clicking on resource in the resources list opens edit panel
   ☐ [refactoring] separate CSS into smaller files
-  ☐ [bug] saved changes to a resource in the edit panel not updated in the resources list
+  ✔ [bug] saved changes to a resource in the edit panel not updated in the resources list @done(2016-05-09 15:57) @project(Tasks)
   ☐ [bug] when creating new resource, edit panel shows previous resource information
+  ☐ fix all jshint warning
