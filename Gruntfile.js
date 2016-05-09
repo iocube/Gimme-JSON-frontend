@@ -2,9 +2,15 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		watch: {
+			options: {
+				livereload: true
+			},
 			js: {
 				files: ['scripts/**/*.js'],
 				tasks: ['jshint']
+			},
+			templates: {
+				files: ['scripts/**/*.html']
 			}
 		},
 		connect: {
@@ -12,6 +18,7 @@ module.exports = function(grunt) {
 				options: {
 					port: 8000,
 					base: '',
+					livereload: true,
 					middleware: function(connect, options, middlewares) {
             var modRewrite = require('connect-modrewrite');
 

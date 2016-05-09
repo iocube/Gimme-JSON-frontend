@@ -3,9 +3,9 @@ Tasks:
   ✔ implement resource creation @done(2016-05-06 09:47) @project(Tasks)
   ✔ implement resource editing @done(2016-05-06 09:47) @project(Tasks)
   ✔ implement resource deletion @done(2016-05-06 09:47) @project(Tasks)
-  ☐ [tools] add JavaScript linter
+  ✔ [tools] add JavaScript linter @done(2016-05-09 12:03) @project(Tasks)
   ☐ [tools] add sass
-  ☐ [tools] add livereload
+  ✔ [tools] add livereload @done(2016-05-09 12:07) @project(Tasks)
   ☐ add validation and error handling for all creating/editing/deleting operations
   ✔ [ui] list all resources @done(2016-05-06 11:40) @project(Tasks)
   ✔ [ui] add panel for resource modification @done(2016-05-06 16:33) @project(Tasks)
