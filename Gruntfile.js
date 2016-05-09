@@ -40,8 +40,11 @@ module.exports = function(grunt) {
 		  }
 		},
 		jshint: {
-			all: {
-				src: ['scripts/**/*.js']
+			scripts: {
+				options: {
+					jshintrc: '.jshintrc'
+				},
+				src: ['scripts/**/*.js'],
 			}
 		},
 		sass: {

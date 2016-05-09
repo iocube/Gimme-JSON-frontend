@@ -28,6 +28,6 @@
       post: post,
       remove: remove,
       put: put
-    }
+    };
   }
 })();

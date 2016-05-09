@@ -11,13 +11,13 @@
       link: function(scope, elem, attrs, ctrl) {
         ctrl.$validators.response = function(modelValue, viewValue) {
           try {
-            JSON.parse(modelValue)
+            JSON.parse(modelValue);
           } catch(err) {
             return false;
           }
 
           return true;
-        }
+        };
       }
     };
 

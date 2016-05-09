@@ -11,7 +11,7 @@
 
       resourceAPIService.get().then(function(resources) {
         self.resources = resources;
-      })
+      });
 
       self.create = function() {
         var newResource = {
@@ -19,21 +19,21 @@
           'methods': ['GET'],
           'response': '{}',
           'queryParams': []
-        }
+        };
 
         resourceAPIService.post(newResource).then(function(resource) {
           self.resources.push(resource);
           self.makeDraft(resource);
           self.openEditPanel();
         });
-      }
+      };
 
       self.remove = function(resourceIndex) {
-        var resourceId = self.resources[resourceIndex]['_id']['$oid'];
+        var resourceId = self.resources[resourceIndex]._id.$oid;
         resourceAPIService.remove(resourceId).then(function() {
           self.resources.splice(resourceIndex, 1);
         });
-      }
+      };
 
       self.save = function(resource) {
         self.isSaving = true;
@@ -43,14 +43,14 @@
           updateResourceInCollection(self.resources, updatedResource);
         }, function(error) {
           self.resourceEditErrors = error;
-        })
+        });
 
         promise.finally(function() {
           $timeout(function() {
             self.isSaving = false;
           }, 1000);
-        })
-      }
+        });
+      };
 
       var findIndexById = function(resourcesList, resourceId) {
         for (var i = 0, max = resourcesList.length; i < max; i += 1) {
@@ -58,7 +58,7 @@
             return i;
           }
         }
-      }
+      };
 
       var updateResourceInCollection = function(resourcesList, resource) {
         var idx = findIndexById(resourcesList, resource._id.$oid);
@@ -66,24 +66,24 @@
         if (idx >= 0) {
           resourcesList.splice(idx, 1, resource);
         }
-      }
+      };
 
       self.makeDraft = function(resource) {
-        var draft = cloneResource(resource.plain())
+        var draft = cloneResource(resource.plain());
         self.resourceEdit = draft;
-      }
+      };
 
       self.openEditPanel = function() {
           self.isPanelOpen = true;
-      }
+      };
 
       self.closePanel = function() {
         self.isPanelOpen = false;
-      }
+      };
 
       var cloneResource = function(resource) {
         return angular.copy(resource);
-      }
+      };
 
       self.resourceEdit = {
         'endpoint': '/api/v1/',

@@ -43,7 +43,7 @@
         scope.onAcceptWrapper = function() {
           scope.onAccept();
           close();
-        }
+        };
 
         scope.onCancelWrapper = function() {
           if (scope.onCancel) {
@@ -51,13 +51,13 @@
           }
 
           close();
-        }
+        };
 
         elem.on('$destroy', function() {
           elem.unbind('click');
-        })
+        });
       }
-    }
+    };
 
     return directive;
   }

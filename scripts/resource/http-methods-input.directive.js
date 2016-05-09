@@ -33,18 +33,18 @@
       } else {
         self.methods.push(method);
       }
-    }
+    };
 
     self.find = function(method) {
       return self.methods.indexOf(method);
-    }
+    };
 
     self.isActive = function(method) {
       return self.find(method) >= 0;
-    }
+    };
 
     self.isLastActiveMethod = function() {
       return self.methods.length === 1;
-    }
+    };
   }
 })();
