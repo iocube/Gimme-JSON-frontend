@@ -52,7 +52,7 @@
     </td>
 
     <td class="table__cell">
-      <i class="fa fa-pencil u-pointer u-padding-xs-right" ng-click="self.edit(resource); self.openPanel()"></i>
+      <i class="fa fa-pencil u-pointer u-padding-xs-right" ng-click="self.makeDraft(resource); self.openEditPanel()"></i>
       <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove($index)" body="Remove resource?"></i>
     </td>
   </tr>

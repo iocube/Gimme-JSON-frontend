@@ -23,7 +23,8 @@
 
         resourceAPIService.post(newResource).then(function(resource) {
           self.resources.push(resource);
-          self.openPanel();
+          self.makeDraft(resource);
+          self.openEditPanel();
         });
       }
 
@@ -67,12 +68,12 @@
         }
       }
 
-      self.edit = function(resource) {
+      self.makeDraft = function(resource) {
         var draft = cloneResource(resource.plain())
         self.resourceEdit = draft;
       }
 
-      self.openPanel = function() {
+      self.openEditPanel = function() {
           self.isPanelOpen = true;
       }
 
