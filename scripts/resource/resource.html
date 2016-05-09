@@ -38,7 +38,7 @@
 
   <tr ng-repeat="resource in self.resources" ng-class="{'table--odd': $odd, 'table--even': $even}">
     <td class="table__cell">
-      <span ng-repeat="method in resource.methods"
+      <span ng-repeat="method in resource.methods | orderBy"
         class="badge"
         ng-class="{'badge--green': method === 'GET',
         'badge--orange': method === 'POST',

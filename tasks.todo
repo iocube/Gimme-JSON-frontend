@@ -16,8 +16,8 @@ Tasks:
   ☐ [tools] add unit tests
   ✔ [tools] unit tests environment setup @done(2016-05-09 11:06) @project(Tasks)
   ✔ [tools] add test coverage @done(2016-05-09 11:28) @project(Tasks)
-  ☐ [bug] endpoint input field is 'jumping' when focused
-  ☐ [bug] badges should be sorted
+  ✔ [bug] endpoint input field is 'jumping' when focused @done(2016-05-09 15:25) @project(Tasks)
+  ✔ [bug] badges should be sorted @done(2016-05-09 15:42) @project(Tasks)
   ☐ [feature] change panel 'Cancel' button to 'Close'
   ☐ [feature] after clicking on '+' (create new resource) then open this resource in a edit panel.
   ☐ [feature] add 'Delete' button to edit panel
