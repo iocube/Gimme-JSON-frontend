@@ -11,6 +11,10 @@ module.exports = function(grunt) {
 			},
 			templates: {
 				files: ['scripts/**/*.html']
+			},
+			styles: {
+				files: ['styles/**/*.scss'],
+				tasks: ['sass']
 			}
 		},
 		connect: {
@@ -39,12 +43,21 @@ module.exports = function(grunt) {
 			all: {
 				src: ['scripts/**/*.js']
 			}
+		},
+		sass: {
+			options: {
+				sourceMap: true
+			},
+			dist: {
+				src: ['styles/**/*.scss'],
+				dest: 'build/main.css'
+			}
 		}
 	});
 
 	// tasks
 	grunt.registerTask('default', []);
-	grunt.registerTask('serve', ['connect', 'watch']);
+	grunt.registerTask('serve', ['connect', 'sass', 'watch']);
 	grunt.registerTask('test', ['karma']);
 
 	// plugins
@@ -52,4 +65,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-karma');
+	grunt.loadNpmTasks('grunt-sass');
 }
