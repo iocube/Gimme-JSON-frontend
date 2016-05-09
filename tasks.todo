@@ -15,7 +15,7 @@ Tasks:
   ✔ [ui] ask user for confirmation on deletion @done(2016-05-07 18:16) @project(Tasks)
   ☐ [tools] add unit tests
   ✔ [tools] unit tests environment setup @done(2016-05-09 11:06) @project(Tasks)
-  ☐ [tools] add test coverage
+  ✔ [tools] add test coverage @done(2016-05-09 11:28) @project(Tasks)
   ☐ [bug] endpoint input field is 'jumping' when focused
   ☐ [bug] badges should be sorted
   ☐ [feature] change panel 'Cancel' button to 'Close'
