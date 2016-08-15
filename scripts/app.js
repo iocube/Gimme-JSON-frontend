@@ -11,10 +11,10 @@
     RestangularProvider.setBaseUrl(BACKEND_ENDPOINT);
 
     $stateProvider
-      .state('resource', {
+      .state('main', {
         url: '/',
-        templateUrl: 'scripts/resource/resource.html',
-        controller: 'ResourceController as self'
+        templateUrl: 'scripts/main/main.html',
+        controller: 'MainController as self'
       });
   }
 })();

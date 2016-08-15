@@ -6,7 +6,7 @@
 
   function httpMethodsInput() {
     var directive = {
-      templateUrl: 'scripts/resource/http-methods-input.html',
+      templateUrl: 'scripts/main/http-methods-input.html',
       restrict: 'E',
       scope: {
         methods: '='

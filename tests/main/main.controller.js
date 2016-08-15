@@ -1,4 +1,4 @@
-describe('ResourceController', function() {
+describe('MainController', function() {
   beforeEach(module('gimmeJSONApp'));
 
   var $controller,
@@ -9,7 +9,7 @@ describe('ResourceController', function() {
     $controller = $injector.get('$controller');
     $rootScope = $injector.get('$rootScope');
     scope = $rootScope.$new();
-    ctrl = $controller('ResourceController', {$scope: scope});
+    ctrl = $controller('MainController', {$scope: scope});
   }));
 
   it('example', function() {

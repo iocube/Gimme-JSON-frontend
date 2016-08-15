@@ -1,4 +1,4 @@
-<!-- edit resource panel -->
+<!-- edit endpoint panel -->
 <section class="panel-edit panel-edit--vertical-split" ng-class="{'panel-edit--open': self.isPanelOpen}">
   <i class="fa fa-times panel-edit__close u-pointer" ng-click="self.closePanel()"></i>
 
@@ -6,29 +6,29 @@
     <div class="input-group">
       <label for="panel-edit__endpoint" class="input-group__label">Endpoint</label>
       <span class="u-validation-error" ng-show="form.endpoint.$error.required">Endpoint is required.</span>
-      <span class="u-validation-error" ng-bind="self.resourceEditErrors.endpoint[0]" ng-show="self.resourceEditErrors.endpoint"></span>
-      <input spellcheck="false" id="panel-edit__endpoint" class="input-group__input" name="endpoint" ng-model="self.resourceEdit.endpoint" maxlength="255" required endpoint-validator>
+      <span class="u-validation-error" ng-bind="self.endpointEditErrors.endpoint[0]" ng-show="self.endpointEditErrors.endpoint"></span>
+      <input spellcheck="false" id="panel-edit__endpoint" class="input-group__input" name="endpoint" ng-model="self.endpointEdit.endpoint" maxlength="255" required endpoint-validator>
     </div>
 
     <div class="input-group">
       <label class="input-group__label">Methods</label>
-      <http-methods-input methods="self.resourceEdit.methods" class="u-block"></http-methods-input>
+      <http-methods-input methods="self.endpointEdit.methods" class="u-block"></http-methods-input>
     </div>
 
     <div class="input-group">
       <label for="panel-edit__response" class="input-group__label">Response</label>
       <span class="u-validation-error" ng-show="form.response.$error.required">Response is required.</span>
       <span class="u-validation-error" ng-show="form.response.$error.response">Response should be valid JSON.</span>
-      <span class="u-validation-error" ng-bind="self.resourceEditErrors.response" ng-show="form.$error.response"></span>
-      <textarea id="panel-edit__response" class="input-group__textarea" name="response" ng-model="self.resourceEdit.response" required response-validator></textarea>
+      <span class="u-validation-error" ng-bind="self.endpointEditErrors.response" ng-show="form.$error.response"></span>
+      <textarea id="panel-edit__response" class="input-group__textarea" name="response" ng-model="self.endpointEdit.response" required response-validator></textarea>
     </div>
 
-    <button class="btn btn--save" ng-click="self.save(self.resourceEdit)" ng-disabled="form.$invalid || self.isSaving"><i class="fa fa-refresh fa-spin" ng-show="self.isSaving"></i>Save</button>
+    <button class="btn btn--save" ng-click="self.save(self.endpointEdit)" ng-disabled="form.$invalid || self.isSaving"><i class="fa fa-refresh fa-spin" ng-show="self.isSaving"></i>Save</button>
     <button class="btn btn--cancel" ng-click="self.closePanel()">Cancel</button>
   </form>
 </section>
 
-<!-- resources list -->
+<!-- endpoint list -->
 <table>
   <tr>
     <th class="table__cell table--header">Methods</th>
@@ -36,9 +36,9 @@
     <th class="table__cell table--header">Actions</th>
   </tr>
 
-  <tr ng-repeat="resource in self.resources" ng-class="{'table--odd': $odd, 'table--even': $even}">
+  <tr ng-repeat="endpoint in self.endpoints" ng-class="{'table--odd': $odd, 'table--even': $even}">
     <td class="table__cell">
-      <span ng-repeat="method in resource.methods | orderBy"
+      <span ng-repeat="method in endpoint.methods | orderBy"
         class="badge"
         ng-class="{'badge--green': method === 'GET',
         'badge--orange': method === 'POST',
@@ -48,15 +48,15 @@
     </td>
 
     <td class="table__cell">
-      <span ng-bind="resource.endpoint"></span>
+      <span ng-bind="endpoint.endpoint"></span>
     </td>
 
     <td class="table__cell">
-      <i class="fa fa-pencil u-pointer u-padding-xs-right" ng-click="self.makeDraft(resource); self.openEditPanel()"></i>
-      <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove($index)" body="Remove resource?"></i>
+      <i class="fa fa-pencil u-pointer u-padding-xs-right" ng-click="self.makeDraft(endpoint); self.openEditPanel()"></i>
+      <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove($index)" body="Remove endpoint?"></i>
     </td>
   </tr>
 </table>
 
-<!-- create new resource -->
+<!-- create new endpoint -->
 <button class="btn btn--add" ng-click="self.create()"><i class="fa fa-plus"></i></button>
