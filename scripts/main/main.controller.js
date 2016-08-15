@@ -29,7 +29,7 @@
       };
 
       self.remove = function(endpointIndex) {
-        var endpointId = self.endpoints[endpointIndex]._id.$oid;
+        var endpointId = self.endpoints[endpointIndex]._id;
         endpointAPIService.remove(endpointId).then(function() {
           self.endpoints.splice(endpointIndex, 1);
         });
@@ -37,7 +37,7 @@
 
       self.save = function(endpoint) {
         self.isSaving = true;
-        var promise = endpointAPIService.put(endpoint._id.$oid, endpoint);
+        var promise = endpointAPIService.put(endpoint._id, endpoint);
 
         promise.then(function(updatedEndpoint) {
           updateEndpointInCollection(self.endpoints, updatedEndpoint);
@@ -54,14 +54,14 @@
 
       var findIndexById = function(endpointsList, endpointId) {
         for (var i = 0, max = endpointsList.length; i < max; i += 1) {
-          if (endpointsList[i]._id.$oid === endpointId) {
+          if (endpointsList[i]._id === endpointId) {
             return i;
           }
         }
       };
 
       var updateEndpointInCollection = function(endpointsList, endpoint) {
-        var idx = findIndexById(endpointsList, endpoint._id.$oid);
+        var idx = findIndexById(endpointsList, endpoint._id);
 
         if (idx >= 0) {
           endpointsList.splice(idx, 1, endpoint);
