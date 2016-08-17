@@ -1,61 +1,72 @@
 <!-- edit endpoint panel -->
 <section class="panel-edit panel-edit--vertical-split" ng-class="{'panel-edit--open': self.isPanelOpen}">
-  <i class="fa fa-times panel-edit__close u-pointer" ng-click="self.closePanel()"></i>
+    <i class="fa fa-times panel-edit__close u-pointer" ng-click="self.closePanel()"></i>
 
-  <form name="form" class="panel-edit__container" novalidate>
-    <div class="input-group">
-      <label for="panel-edit__endpoint" class="input-group__label">Endpoint</label>
-      <span class="u-validation-error" ng-show="form.endpoint.$error.required">Endpoint is required.</span>
-      <span class="u-validation-error" ng-bind="self.endpointEditErrors.endpoint[0]" ng-show="self.endpointEditErrors.endpoint"></span>
-      <input spellcheck="false" id="panel-edit__endpoint" class="input-group__input" name="endpoint" ng-model="self.endpointEdit.endpoint" maxlength="255" required endpoint-validator>
-    </div>
+    <form name="form" class="panel-edit__container" novalidate>
+        <div class="input-group">
+            <label for="panel-edit__endpoint" class="input-group__label">Endpoint</label>
+            <span class="u-validation-error" ng-show="form.endpoint.$error.required">Endpoint is required.</span>
+            <span class="u-validation-error"
+                  ng-bind="self.endpointEditErrors.endpoint"
+                  ng-show="self.endpointEditErrors.endpoint && self.endpointEdit._id"></span>
+            <input spellcheck="false" id="panel-edit__endpoint" class="input-group__input" name="endpoint"
+                   ng-model="self.endpointEdit.endpoint" maxlength="255" required endpoint-validator>
+        </div>
 
-    <div class="input-group">
-      <label class="input-group__label">Methods</label>
-      <http-methods-input methods="self.endpointEdit.methods" class="u-block"></http-methods-input>
-    </div>
+        <div class="input-group">
+            <label class="input-group__label">Methods</label>
+            <http-methods-input methods="self.endpointEdit.methods" class="u-block"></http-methods-input>
+        </div>
 
-    <div class="input-group">
-      <label for="panel-edit__response" class="input-group__label">Response</label>
-      <span class="u-validation-error" ng-show="form.response.$error.required">Response is required.</span>
-      <span class="u-validation-error" ng-show="form.response.$error.response">Response should be valid JSON.</span>
-      <span class="u-validation-error" ng-bind="self.endpointEditErrors.response" ng-show="form.$error.response"></span>
-      <textarea id="panel-edit__response" class="input-group__textarea" name="response" ng-model="self.endpointEdit.response" required response-validator></textarea>
-    </div>
+        <div class="input-group">
+            <label for="panel-edit__response" class="input-group__label">Response</label>
+            <span class="u-validation-error" ng-show="form.response.$error.required">Response is required.</span>
+            <span class="u-validation-error"
+                  ng-show="form.response.$error.response">Response should be valid JSON.</span>
+            <span class="u-validation-error" ng-bind="self.endpointEditErrors.response"
+                  ng-show="form.$error.response"></span>
+            <textarea id="panel-edit__response" class="input-group__textarea" name="response"
+                      ng-model="self.endpointEdit.response" required response-validator></textarea>
+        </div>
 
-    <button class="btn btn--save" ng-click="self.save(self.endpointEdit)" ng-disabled="form.$invalid || self.isSaving"><i class="fa fa-refresh fa-spin" ng-show="self.isSaving"></i>Save</button>
-    <button class="btn btn--cancel" ng-click="self.closePanel()">Cancel</button>
-  </form>
+        <button class="btn btn--save" ng-click="self.save(self.endpointEdit)"
+                ng-disabled="form.$invalid || self.isSaving"><i class="fa fa-refresh fa-spin"
+                                                                ng-show="self.isSaving"></i>Save
+        </button>
+        <button class="btn btn--cancel" ng-click="self.closePanel()">Cancel</button>
+    </form>
 </section>
 
 <!-- endpoint list -->
 <table>
-  <tr>
-    <th class="table__cell table--header">Methods</th>
-    <th class="table__cell table--header">Endpoint</th>
-    <th class="table__cell table--header">Actions</th>
-  </tr>
+    <tr>
+        <th class="table__cell table--header">Methods</th>
+        <th class="table__cell table--header">Endpoint</th>
+        <th class="table__cell table--header">Actions</th>
+    </tr>
 
-  <tr ng-repeat="endpoint in self.endpoints" ng-class="{'table--odd': $odd, 'table--even': $even}">
-    <td class="table__cell">
+    <tr ng-repeat="endpoint in self.endpoints" ng-class="{'table--odd': $odd, 'table--even': $even}">
+        <td class="table__cell">
       <span ng-repeat="method in endpoint.methods | orderBy"
-        class="badge"
-        ng-class="{'badge--green': method === 'GET',
+            class="badge"
+            ng-class="{'badge--green': method === 'GET',
         'badge--orange': method === 'POST',
         'badge--blue': method === 'PATCH',
         'badge--purple': method === 'PUT',
         'badge--red': method === 'DELETE'}">{{method}}</span>
-    </td>
+        </td>
 
-    <td class="table__cell">
-      <span ng-bind="endpoint.endpoint"></span>
-    </td>
+        <td class="table__cell">
+            <span ng-bind="endpoint.endpoint"></span>
+        </td>
 
-    <td class="table__cell">
-      <i class="fa fa-pencil u-pointer u-padding-xs-right" ng-click="self.makeDraft(endpoint); self.openEditPanel()"></i>
-      <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove($index)" body="Remove endpoint?"></i>
-    </td>
-  </tr>
+        <td class="table__cell">
+            <i class="fa fa-pencil u-pointer u-padding-xs-right"
+               ng-click="self.makeDraft(endpoint); self.openEditPanel()"></i>
+            <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove($index)"
+               body="Remove endpoint?"></i>
+        </td>
+    </tr>
 </table>
 
 <!-- create new endpoint -->
