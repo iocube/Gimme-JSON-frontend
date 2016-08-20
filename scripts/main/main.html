@@ -46,7 +46,9 @@
         <th class="table__cell table--header">Actions</th>
     </tr>
 
-    <tr ng-repeat="endpoint in self.endpoints" ng-class="{'table--odd': $odd, 'table--even': $even}">
+    <tr ng-repeat="endpoint in self.endpoints"
+        ng-class="{'table--odd': $odd, 'table--even': $even}"
+        ng-click="self.makeDraft(endpoint); self.openEditPanel()">
         <td class="table__cell">
       <span ng-repeat="method in endpoint.methods | orderBy"
             class="badge"

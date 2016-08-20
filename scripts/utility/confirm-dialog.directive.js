@@ -33,11 +33,16 @@
             document.body.appendChild(template);
             $compile(template)(scope);
           });
+
+          var backdrop = document.createElement('div');
+          backdrop.id = 'dialog-backdrop';
+          document.body.appendChild(backdrop);
         }
 
         function close() {
           var dialog = document.getElementById(scope.DIALOG_ID);
           dialog.parentNode.removeChild(dialog);
+          document.getElementById('dialog-backdrop').remove();
         }
 
         scope.onAcceptWrapper = function() {
