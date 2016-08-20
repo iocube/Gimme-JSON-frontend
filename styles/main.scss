@@ -225,9 +225,9 @@ button:disabled {
 .notification-container {
   position: absolute;
   overflow-y: auto;
-  height: 100vh;
+  max-height: 100vh;
   overflow-x: hidden;
-  border-bottom: 1px solid #ccc;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 
   &--top-left {
     top: 0;
@@ -243,8 +243,8 @@ button:disabled {
   background: #FFF;
   padding: 25px 25px 0 25px;
   width: 280px;
-  border: 1px solid #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid #fbfafa;
 }
 
 .notification__type {
