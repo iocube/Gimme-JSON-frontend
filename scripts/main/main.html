@@ -30,10 +30,13 @@
         </div>
 
         <button class="btn btn--save" ng-click="self.save(self.endpointEdit)"
-                ng-disabled="form.$invalid || self.isSaving"><i class="fa fa-refresh fa-spin"
-                                                                ng-show="self.isSaving"></i>Save
+                ng-disabled="form.$invalid || self.inProgress"><i class="fa fa-refresh fa-spin"
+                                                                ng-show="self.inProgress"></i>Save
         </button>
         <button class="btn btn--cancel" ng-click="self.closePanel()">Cancel</button>
+        <button class="btn btn--delete u-right" ng-click="self.remove(self.endpointEdit._id)" ng-disabled="self.inProgress">
+            <i class="fa fa-refresh fa-spin" ng-show="self.inProgress"></i>Delete
+        </button>
     </form>
 </section>
 
@@ -63,7 +66,7 @@
         <td class="table__cell">
             <i class="fa fa-pencil u-pointer u-padding-xs-right"
                ng-click="self.makeDraft(endpoint); self.openEditPanel()"></i>
-            <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove($index)"
+            <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove(endpoint._id)"
                body="Remove endpoint?"></i>
         </td>
     </tr>

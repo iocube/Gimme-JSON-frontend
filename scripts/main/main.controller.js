@@ -37,15 +37,25 @@
             });
         };
 
-        self.remove = function (endpointIndex) {
-            var endpointId = self.endpoints[endpointIndex]._id;
-            endpointAPIService.remove(endpointId).then(function () {
-                self.endpoints.splice(endpointIndex, 1);
+        self.remove = function (endpointId) {
+            self.inProgress = true;
+            var promise = endpointAPIService.remove(endpointId);
+
+            promise.then(function () {
+                var idx = self.endpoints.findIndex(function(endpoint) {
+                    return endpoint._id === endpointId;
+                });
+                self.closePanel();
+                self.endpoints.splice(idx, 1);
+            });
+
+            promise.finally(function() {
+                self.inProgress = false;
             });
         };
 
         self.save = function (endpoint) {
-            self.isSaving = true;
+            self.inProgress = true;
             var promise = endpointAPIService.put(endpoint._id, endpoint);
 
             promise.then(function (updatedEndpoint) {
@@ -56,7 +66,7 @@
 
             promise.finally(function () {
                 $timeout(function () {
-                    self.isSaving = false;
+                    self.inProgress = false;
                 }, 1000);
             });
         };
@@ -78,7 +88,7 @@
         };
 
         self.makeDraft = function (endpoint) {
-            var draft = cloneEndpoint(endpoint.plain());
+            var draft = angular.copy(endpoint.plain());
             self.endpointEdit = draft;
         };
 
@@ -89,10 +99,6 @@
         self.closePanel = function () {
             self.isPanelOpen = false;
             self.endpointEditErrors = {};
-        };
-
-        var cloneEndpoint = function (endpoint) {
-            return angular.copy(endpoint);
         };
 
         self.endpointEdit = {
