@@ -1,5 +1,14 @@
 
 module.exports = function(grunt) {
+	var conf = {};
+	// --target=dev || --target=docker
+	var target = grunt.option('target') || 'dev';
+	if (target === 'docker') {
+		conf.BACKEND_ENDPOINT = 'http://172.16.238.10:5000';
+	} else {
+		conf.BACKEND_ENDPOINT = 'http://localhost:5000';
+	}
+
 	grunt.initConfig({
 		watch: {
 			options: {
@@ -44,7 +53,7 @@ module.exports = function(grunt) {
 				options: {
 					jshintrc: '.jshintrc'
 				},
-				src: ['scripts/**/*.js'],
+				src: ['scripts/**/*.js']
 			}
 		},
 		sass: {
@@ -55,12 +64,23 @@ module.exports = function(grunt) {
 				src: ['styles/**/*.scss'],
 				dest: 'build/main.css'
 			}
+		},
+	  	ngconstant: {
+			options: {
+				name: 'gimmeJSONApp',
+				dest: 'scripts/config.js',
+				constants: {
+					BACKEND_ENDPOINT: conf.BACKEND_ENDPOINT
+				},
+				deps: false
+			},
+			build: {}
 		}
 	});
 
 	// tasks
 	grunt.registerTask('default', []);
-	grunt.registerTask('serve', ['connect', 'sass', 'watch']);
+	grunt.registerTask('serve', ['ngconstant', 'connect', 'sass', 'watch']);
 	grunt.registerTask('test', ['karma']);
 
 	// plugins
@@ -69,4 +89,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-sass');
-}
+	grunt.loadNpmTasks('grunt-ng-constant');
+};

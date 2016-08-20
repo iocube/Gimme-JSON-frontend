@@ -3,3 +3,4 @@ bower_components/
 coverage/
 build/
 .idea/
+scripts/config.js
