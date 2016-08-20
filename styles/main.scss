@@ -2,6 +2,7 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -122,9 +123,9 @@ button:disabled {
   position: absolute;
   border-left: 1px solid #2196F3;
   background: #FFF;
-  -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
   transition-duration: 1s;
   right: -50%;
 }
@@ -139,7 +140,7 @@ button:disabled {
 }
 
 .panel-edit__container {
-    padding: 20px;
+  padding: 20px;
 }
 
 .panel-edit__close {
@@ -156,8 +157,9 @@ button:disabled {
   margin-bottom: 5px;
 }
 
+.btn {
+}
 
-.btn {}
 .btn--add {
   border-radius: 25px;
   border-style: none;
@@ -176,14 +178,14 @@ button:disabled {
 }
 
 .btn--save {
-    color: #FFF;
-    background: #2196F3;
-    border-color: #2196F3;
+  color: #FFF;
+  background: #2196F3;
+  border-color: #2196F3;
 }
 
 .btn--save:hover {
-    background: #0c85e6;
-    border-color: #0c85e6;
+  background: #0c85e6;
+  border-color: #0c85e6;
 }
 
 .btn--xs {
@@ -207,7 +209,7 @@ button:disabled {
   width: 280px;
   min-height: 110px;
   border: 1px solid #fff;
-  box-shadow: 0 5px 15px rgba(0,0,0,.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
 }
 
 .dialog__body {
@@ -220,6 +222,73 @@ button:disabled {
   float: right;
 }
 
+.notification-container {
+  position: absolute;
+  overflow-y: auto;
+  height: 100vh;
+  overflow-x: hidden;
+  border-bottom: 1px solid #ccc;
+
+  &--top-left {
+    top: 0;
+  }
+
+  &--top-right {
+    top: 0;
+    right: 0;
+  }
+}
+
+.notification {
+  background: #FFF;
+  padding: 25px 25px 0 25px;
+  width: 280px;
+  border: 1px solid #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.notification__type {
+  color: #F44336;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.notification__body {
+  margin-top: 5px;
+}
+
+.notification__title {
+  text-transform: uppercase;
+
+  &--error {
+    color: #F44336;
+  }
+
+  &--info {
+    color: #2196F3;
+  }
+
+  &--success {
+    color: #4CAF50;
+  }
+}
+
+.notification__action {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: right;
+}
+
+.notification__close {
+  text-transform: uppercase;
+  font-size: 12px;
+
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 /* utility */
 .u-pointer {
   cursor: pointer;
@@ -230,7 +299,7 @@ button:disabled {
 }
 
 .u-block {
-    display: block;
+  display: block;
 }
 
 .u-validation-error {

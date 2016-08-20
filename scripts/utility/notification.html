@@ -1,0 +1,31 @@
+<div class="notification-container"
+     ng-class="{
+        'notification-container--top-left': self.position === 'top-left',
+        'notification-container--top-right': self.position === 'top-right'
+     }">
+    <div class="notification" ng-repeat="message in self.messages track by $index">
+        <!-- message type -->
+        <span class="notification__title notification__title--error" ng-if="message.type === self.types.ERROR">
+            <i class="fa fa-exclamation-triangle"></i>
+            <span>Error</span></span>
+        </span>
+
+        <span class="notification__title notification__title--info" ng-if="message.type === self.types.INFO">
+            <i class="fa fa fa-info"></i>
+            <span>Info</span>
+        </span>
+
+        <span class="notification__title notification__title--success" ng-if="message.type === self.types.SUCCESS">
+            <i class="fa fa fa-check"></i>
+            <span>Success</span>
+        </span>
+
+        <!-- message -->
+        <div class="notification__body">{{message.message}}</div>
+
+        <!-- close -->
+        <div class="notification__action">
+            <span class="notification__close" ng-click="self.close($index)">close</span>
+        </div>
+    </div>
+</div>

@@ -2,10 +2,11 @@
     'use strict';
 
     angular.module('gimmeJSONApp').controller('MainController', MainController);
-    MainController.$inject = ['endpointAPIService', '$timeout'];
+    MainController.$inject = ['endpointAPIService', '$timeout', 'NotificationService', '$scope'];
 
-    function MainController(endpointAPIService, $timeout) {
+    function MainController(endpointAPIService, $timeout, NotificationService, $scope) {
         var self = this;
+        NotificationService.initialize({position: 'top-left'});
 
         self.isPanelOpen = false;
 

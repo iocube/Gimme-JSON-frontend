@@ -1,6 +1,6 @@
 <!doctype html>
 <html ng-app="gimmeJSONApp">
-  <head>
+<head>
     <base href="/"></base>
     <title>Gimme some JSON</title>
 
@@ -18,12 +18,15 @@
     <!-- scripts -->
     <script src="scripts/app.js"></script>
     <script src="scripts/main/endpoint-api.service.js"></script>
+    <script src="scripts/utility/notification.service.js"></script>
     <script src="scripts/main/main.controller.js"></script>
     <script src="scripts/main/http-methods-input.directive.js"></script>
     <script src="scripts/main/response-validator.directive.js"></script>
     <script src="scripts/utility/confirm-dialog.directive.js"></script>
-  </head>
-  <body>
-    <div ui-view></div>
-  </body>
+    <script src="scripts/utility/notification.directive.js"></script>
+    <script src="scripts/utility/notification.controller.js"></script>
+</head>
+<body>
+<div ui-view></div>
+</body>
 </html>
