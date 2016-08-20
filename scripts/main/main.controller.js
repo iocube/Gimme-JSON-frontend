@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('gimmeJSONApp').controller('MainController', MainController);
-    MainController.$inject = ['endpointAPIService', '$timeout', 'NotificationService', '$scope'];
+    MainController.$inject = ['endpointAPIService', 'NotificationService'];
 
-    function MainController(endpointAPIService, $timeout, NotificationService, $scope) {
+    function MainController(endpointAPIService, NotificationService) {
         var self = this;
         NotificationService.initialize({position: 'top-left'});
 
@@ -65,9 +65,7 @@
             });
 
             promise.finally(function () {
-                $timeout(function () {
-                    self.inProgress = false;
-                }, 1000);
+                self.inProgress = false;
             });
         };
 
