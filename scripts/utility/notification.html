@@ -21,7 +21,14 @@
         </span>
 
         <!-- message -->
-        <div class="notification__body">{{message.message}}</div>
+        <ul class="notification__body" ng-if="message.type === self.types.ERROR">
+            <li ng-repeat="(key, val) in message.message">
+                <span class="notification__error-key">{{key}}:</span>
+                <span>{{val}}</span>
+            </li>
+        </ul>
+
+        <div class="notification__body" ng-if="message.type !== self.types.ERROR">{{message.message}}</div>
 
         <!-- close -->
         <div class="notification__action">

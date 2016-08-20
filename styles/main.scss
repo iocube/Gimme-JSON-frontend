@@ -255,6 +255,16 @@ button:disabled {
 
 .notification__body {
   margin-top: 5px;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.notification__error-key {
+  font-weight: 600;
+}
+
+.notification__error_value {
+
 }
 
 .notification__title {
@@ -288,6 +298,7 @@ button:disabled {
     cursor: pointer;
   }
 }
+
 
 /* utility */
 .u-pointer {

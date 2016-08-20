@@ -22,10 +22,18 @@
                 'queryParams': []
             };
 
-            endpointAPIService.post(newEndpoint).then(function (endpoint) {
+            var promise = endpointAPIService.post(newEndpoint);
+            promise.then(function (endpoint) {
                 self.endpoints.push(endpoint);
                 self.makeDraft(endpoint);
                 self.openEditPanel();
+            });
+
+            promise.catch(function(error) {
+                NotificationService.push({
+                    type: NotificationService.types.ERROR,
+                    message: error.data
+                });
             });
         };
 
