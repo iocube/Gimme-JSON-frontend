@@ -1,7 +1,5 @@
 <!-- edit endpoint panel -->
 <section class="panel-edit panel-edit--vertical-split" ng-class="{'panel-edit--open': self.isPanelOpen}">
-    <i class="fa fa-times panel-edit__close u-pointer" ng-click="self.closePanel()"></i>
-
     <form name="form" class="panel-edit__container" novalidate>
         <div class="input-group">
             <label for="panel-edit__endpoint" class="input-group__label">Endpoint</label>
@@ -33,7 +31,7 @@
                 ng-disabled="form.$invalid || self.inProgress"><i class="fa fa-refresh fa-spin"
                                                                 ng-show="self.inProgress"></i>Save
         </button>
-        <button class="btn btn--cancel" ng-click="self.closePanel()">Cancel</button>
+        <button class="btn btn--cancel" ng-click="self.closePanel()">Close</button>
         <button class="btn btn--delete u-right" ng-click="self.remove(self.endpointEdit._id)" ng-disabled="self.inProgress">
             <i class="fa fa-refresh fa-spin" ng-show="self.inProgress"></i>Delete
         </button>
