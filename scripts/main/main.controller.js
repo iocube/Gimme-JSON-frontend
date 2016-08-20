@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('gimmeJSONApp').controller('MainController', MainController);
-    MainController.$inject = ['endpointAPIService', 'NotificationService'];
+    MainController.$inject = ['endpointAPIService', 'NotificationService', 'serverAPIService', '$interval', 'pollingService'];
 
-    function MainController(endpointAPIService, NotificationService) {
+    function MainController(endpointAPIService, NotificationService, serverAPIService, $interval, pollingService) {
         var self = this;
         NotificationService.initialize({position: 'top-left'});
 
@@ -107,5 +107,38 @@
         };
 
         self.endpointEditErrors = {};
+
+        self.restartServer = function() {
+            self.inProgress = true;
+
+            var stopIf = function(data) {
+                return data.status === 200;
+            };
+
+            serverAPIService.restart().then(function() {
+                var promise = pollingService.initialize(serverAPIService.status, stopIf, {
+                    nextPollIn: 2000,
+                    maxTries: 5
+                });
+
+                promise.then(function(data) {
+                    NotificationService.push({
+                        type: NotificationService.types.INFO,
+                        message: 'Greetings human, I am the mighty Server and I was able to restart myself successfully.'
+                    });
+                });
+
+                promise.catch(function(error) {
+                    NotificationService.push({
+                        type: NotificationService.types.ERROR,
+                        message: {'server': 'Hey, server restart failed for some reason, cya.'}
+                    });
+                });
+
+                promise.finally(function() {
+                    self.inProgress = false;
+                });
+            });
+        };
     }
 })();

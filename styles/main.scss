@@ -172,6 +172,23 @@ button:disabled {
   background: #0c85e6;
 }
 
+.btn--restart {
+  margin-left: 55px;
+  border-radius: 25px;
+  border-style: none;
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background: #FF9800;
+  color: #FFF;
+}
+
+.btn--restart:hover {
+  background: #dd8400;
+}
+
 .btn--save {
   color: #FFF;
   background: #2196F3;

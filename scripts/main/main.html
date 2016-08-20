@@ -73,4 +73,5 @@
 </table>
 
 <!-- create new endpoint -->
-<button class="btn btn--add" ng-click="self.create()"><i class="fa fa-plus"></i></button>
+<button class="btn btn--add" ng-click="self.create()" ng-disabled="self.inProgress"><i class="fa fa-plus"></i></button>
+<button class="btn btn--restart" ng-click="self.restartServer()" ng-disabled="self.inProgress">R</button>
