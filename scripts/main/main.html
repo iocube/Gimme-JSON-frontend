@@ -29,10 +29,11 @@
 
         <button class="btn btn--save" ng-click="self.save(self.endpointEdit)"
                 ng-disabled="form.$invalid || self.inProgress"><i class="fa fa-refresh fa-spin"
-                                                                ng-show="self.inProgress"></i>Save
+                                                                  ng-show="self.inProgress"></i>Save
         </button>
         <button class="btn btn--cancel" ng-click="self.closePanel()">Close</button>
-        <button class="btn btn--delete u-right" ng-click="self.remove(self.endpointEdit._id)" ng-disabled="self.inProgress">
+        <button class="btn btn--delete u-right" ng-click="self.remove(self.endpointEdit._id)"
+                ng-disabled="self.inProgress">
             <i class="fa fa-refresh fa-spin" ng-show="self.inProgress"></i>Delete
         </button>
     </form>
@@ -47,26 +48,30 @@
     </tr>
 
     <tr ng-repeat="endpoint in self.endpoints"
-        ng-class="{'table--odd': $odd, 'table--even': $even}"
-        ng-click="self.makeDraft(endpoint); self.openEditPanel()">
-        <td class="table__cell">
-      <span ng-repeat="method in endpoint.methods | orderBy"
-            class="badge"
-            ng-class="{'badge--green': method === 'GET',
-        'badge--orange': method === 'POST',
-        'badge--blue': method === 'PATCH',
-        'badge--purple': method === 'PUT',
-        'badge--red': method === 'DELETE'}">{{method}}</span>
+        ng-class="{'table--odd': $odd, 'table--even': $even}">
+        <td class="table__cell" ng-click="self.makeDraft(endpoint); self.openEditPanel()">
+          <span ng-repeat="method in endpoint.methods | orderBy"
+                class="badge"
+                ng-class="{
+                    'badge--green': method === 'GET',
+                    'badge--orange': method === 'POST',
+                    'badge--blue': method === 'PATCH',
+                    'badge--purple': method === 'PUT',
+                    'badge--red': method === 'DELETE'
+                }">
+              {{method}}
+          </span>
         </td>
 
-        <td class="table__cell">
+        <td class="table__cell" ng-click="self.makeDraft(endpoint); self.openEditPanel()">
             <span ng-bind="endpoint.endpoint"></span>
         </td>
 
         <td class="table__cell">
             <i class="fa fa-pencil u-pointer u-padding-xs-right"
                ng-click="self.makeDraft(endpoint); self.openEditPanel()"></i>
-            <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove(endpoint._id)" body="Remove endpoint?"></i>
+            <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove(endpoint._id)"
+               body="Remove endpoint?"></i>
         </td>
     </tr>
 </table>
