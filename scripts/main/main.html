@@ -8,7 +8,7 @@
                   ng-bind="self.endpointEditErrors.endpoint"
                   ng-show="self.endpointEditErrors.endpoint && self.endpointEdit._id"></span>
             <input spellcheck="false" id="panel-edit__endpoint" class="input-group__input" name="endpoint"
-                   ng-model="self.endpointEdit.endpoint" maxlength="255" required endpoint-validator>
+                   ng-model="self.endpointEdit.endpoint" maxlength="255" required>
         </div>
 
         <div class="input-group">
@@ -66,12 +66,24 @@
         <td class="table__cell">
             <i class="fa fa-pencil u-pointer u-padding-xs-right"
                ng-click="self.makeDraft(endpoint); self.openEditPanel()"></i>
-            <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove(endpoint._id)"
-               body="Remove endpoint?"></i>
+            <i class="fa fa-trash-o u-pointer" confirm-dialog on-accept="self.remove(endpoint._id)" body="Remove endpoint?"></i>
         </td>
     </tr>
 </table>
 
 <!-- create new endpoint -->
-<button class="btn btn--add" ng-click="self.create()" ng-disabled="self.inProgress"><i class="fa fa-plus"></i></button>
-<button class="btn btn--restart" ng-click="self.restartServer()" ng-disabled="self.inProgress">R</button>
+<button class="btn btn--add"
+        ng-click="self.create()"
+        ng-disabled="self.inProgress"
+        tooltip
+        tooltip-text="Create">
+    <i class="fa fa-plus"></i>
+</button>
+
+<button class="btn btn--restart"
+        ng-click="self.restartServer()"
+        ng-disabled="self.inProgress"
+        tooltip
+        tooltip-text="Restart">
+    R
+</button>

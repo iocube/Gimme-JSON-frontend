@@ -155,10 +155,13 @@ button:disabled {
 .btn {
 }
 
+.btn:hover .btn__tooltip {
+  display: inline-block;
+}
+
 .btn--add {
-  border-radius: 25px;
   border-style: none;
-  width: 50px;
+  min-width: 50px;
   height: 50px;
   position: fixed;
   bottom: 10px;
@@ -174,15 +177,15 @@ button:disabled {
 
 .btn--restart {
   margin-left: 55px;
-  border-radius: 25px;
   border-style: none;
-  width: 50px;
+  min-width: 50px;
   height: 50px;
   position: fixed;
   bottom: 10px;
   left: 10px;
   background: #FF9800;
   color: #FFF;
+  transition: width;
 }
 
 .btn--restart:hover {
@@ -334,6 +337,13 @@ button:disabled {
   }
 }
 
+.tooltip {
+  color: #000;
+  font-size: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 2px;
+}
 
 /* utility */
 .u-pointer {
