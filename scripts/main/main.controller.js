@@ -88,6 +88,7 @@
         self.makeDraft = function (endpoint) {
             var draft = angular.copy(endpoint.plain());
             self.endpointEdit = draft;
+            self.setAceEditorContent(self.endpointEdit.response);
         };
 
         self.openEditPanel = function () {
@@ -140,5 +141,7 @@
                 });
             });
         };
+
+        self.setAceEditorContent = function() {};
     }
 })();

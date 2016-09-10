@@ -17,14 +17,25 @@
         </div>
 
         <div class="input-group">
-            <label for="panel-edit__response" class="input-group__label">Response</label>
+            <label class="input-group__label">Response</label>
             <span class="u-validation-error" ng-show="form.response.$error.required">Response is required.</span>
             <span class="u-validation-error"
                   ng-show="form.response.$error.response">Response should be valid JSON.</span>
             <span class="u-validation-error" ng-bind="self.endpointEditErrors.response"
                   ng-show="form.$error.response"></span>
-            <textarea id="panel-edit__response" class="input-group__textarea" name="response"
-                      ng-model="self.endpointEdit.response" required response-validator></textarea>
+
+            <pre class="panel-edit__response ace-editor"
+                 ace-editor
+                 content="self.endpointEdit.response"
+                 set-value="self.setAceEditorContent">
+            </pre>
+
+            <!-- hidden textarea will make custom validation to work on ace-editor -->
+            <textarea class="ng-hide"
+                      name="response"
+                      ng-model="self.endpointEdit.response"
+                      required
+                      response-validator></textarea>
         </div>
 
         <button class="btn btn--save" ng-click="self.save(self.endpointEdit)"

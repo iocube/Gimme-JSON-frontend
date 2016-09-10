@@ -19,6 +19,7 @@
     "angular-ui-router": "^0.2.18",
     "normalize-css": "^4.1.1",
     "restangular": "^1.5.2",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "ace-builds": "ace-build#^1.2.5"
   }
 }
