@@ -17,7 +17,11 @@
         self.create = function () {
             var newEndpoint = {
                 'endpoint': '/api/v1/',
-                'methods': ['GET'],
+                'on_get': '',
+                'on_post': '',
+                'on_patch': '',
+                'on_put': '',
+                'on_delete': '',
                 'response': '{}',
                 'queryParams': []
             };
@@ -102,7 +106,11 @@
 
         self.endpointEdit = {
             'endpoint': '/api/v1/',
-            'methods': ['GET'],
+            'on_get': '',
+            'on_post': '',
+            'on_patch': '',
+            'on_put': '',
+            'on_delete': '',
             'response': '{}',
             'queryParams': []
         };

@@ -12,8 +12,8 @@
         </div>
 
         <div class="input-group">
+            <!-- TODO -->
             <label class="input-group__label">Methods</label>
-            <http-methods-input methods="self.endpointEdit.methods" class="u-block"></http-methods-input>
         </div>
 
         <div class="input-group">
@@ -61,17 +61,11 @@
     <tr ng-repeat="endpoint in self.endpoints"
         ng-class="{'table--odd': $odd, 'table--even': $even}">
         <td class="table__cell" ng-click="self.makeDraft(endpoint); self.openEditPanel()">
-          <span ng-repeat="method in endpoint.methods | orderBy"
-                class="badge"
-                ng-class="{
-                    'badge--green': method === 'GET',
-                    'badge--orange': method === 'POST',
-                    'badge--blue': method === 'PATCH',
-                    'badge--purple': method === 'PUT',
-                    'badge--red': method === 'DELETE'
-                }">
-              {{method}}
-          </span>
+            <span class="badge badge--green" ng-show="endpoint.on_get">GET</span>
+            <span class="badge badge--orange" ng-show="endpoint.on_post">POST</span>
+            <span class="badge badge--blue" ng-show="endpoint.on_patch">PATCH</span>
+            <span class="badge badge--purple" ng-show="endpoint.on_put">PUT</span>
+            <span class="badge badge--red" ng-show="endpoint.on_delete">DELETE</span>
         </td>
 
         <td class="table__cell" ng-click="self.makeDraft(endpoint); self.openEditPanel()">
