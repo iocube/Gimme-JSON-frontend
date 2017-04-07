@@ -16,7 +16,7 @@
 
         self.create = function () {
             var newEndpoint = {
-                'endpoint': '/api/v1/',
+                'route': '/api/v1/',
                 'on_get': '',
                 'on_post': '',
                 'on_patch': '',
@@ -105,7 +105,7 @@
         };
 
         self.endpointEdit = {
-            'endpoint': '/api/v1/',
+            'route': '/api/v1/',
             'on_get': '',
             'on_post': '',
             'on_patch': '',

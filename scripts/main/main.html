@@ -2,13 +2,13 @@
 <section class="panel-edit panel-edit--vertical-split" ng-class="{'panel-edit--open': self.isPanelOpen}">
     <form name="form" class="panel-edit__container" novalidate>
         <div class="input-group">
-            <label for="panel-edit__endpoint" class="input-group__label">Endpoint</label>
-            <span class="u-validation-error" ng-show="form.endpoint.$error.required">Endpoint is required.</span>
+            <label for="panel-edit__endpoint" class="input-group__label">Route</label>
+            <span class="u-validation-error" ng-show="form.endpoint.$error.required">Route is required.</span>
             <span class="u-validation-error"
-                  ng-bind="self.endpointEditErrors.endpoint"
-                  ng-show="self.endpointEditErrors.endpoint && self.endpointEdit._id"></span>
-            <input spellcheck="false" id="panel-edit__endpoint" class="input-group__input" name="endpoint"
-                   ng-model="self.endpointEdit.endpoint" maxlength="255" required>
+                  ng-bind="self.endpointEditErrors.route"
+                  ng-show="self.endpointEditErrors.route && self.endpointEdit._id"></span>
+            <input spellcheck="false" id="panel-edit__endpoint" class="input-group__input" name="route"
+                   ng-model="self.endpointEdit.route" maxlength="255" required>
         </div>
 
         <div class="input-group">
@@ -69,7 +69,7 @@
         </td>
 
         <td class="table__cell" ng-click="self.makeDraft(endpoint); self.openEditPanel()">
-            <span ng-bind="endpoint.endpoint"></span>
+            <span ng-bind="endpoint.route"></span>
         </td>
 
         <td class="table__cell">
