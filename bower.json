@@ -15,11 +15,14 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "angularjs#^1.5.5",
-    "angular-ui-router": "^0.2.18",
-    "normalize-css": "^4.1.1",
-    "restangular": "^1.5.2",
-    "font-awesome": "^4.6.3",
-    "ace-builds": "ace-build#^1.2.5"
+    "angular": "angularjs#~1.6.4",
+    "normalize-css": "~4.1.1",
+    "font-awesome": "~4.6.3",
+    "ace-builds": "ace-build#~1.2.5",
+    "angular-resource": "~1.6.4",
+    "angular-ui-router": "~0.4.2"
+  },
+  "resolutions": {
+    "angular-ui-router": "^0.4.2"
   }
 }

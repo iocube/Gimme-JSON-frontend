@@ -1,6 +1,9 @@
 
 module.exports = function(grunt) {
-	var conf = {};
+	var conf = {
+		MOCK_SERVER_ENDPOINT: 'http://localhost:5001'
+	};
+
 	// --target=dev || --target=docker
 	var target = grunt.option('target') || 'dev';
 	if (target === 'docker') {
@@ -29,7 +32,7 @@ module.exports = function(grunt) {
 		connect: {
 			server: {
 				options: {
-					port: 8000,
+					port: 8002,
 					base: '',
 					livereload: true,
 					middleware: function(connect, options, middlewares) {
@@ -70,7 +73,8 @@ module.exports = function(grunt) {
 				name: 'gimmeJSONApp',
 				dest: 'scripts/config.js',
 				constants: {
-					BACKEND_ENDPOINT: conf.BACKEND_ENDPOINT
+					BACKEND_ENDPOINT: conf.BACKEND_ENDPOINT,
+					MOCK_SERVER_ENDPOINT: conf.MOCK_SERVER_ENDPOINT
 				},
 				deps: false
 			},

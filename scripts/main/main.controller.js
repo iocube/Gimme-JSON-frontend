@@ -10,8 +10,11 @@
 
         self.isPanelOpen = false;
 
-        endpointAPIService.get().then(function (endpoints) {
+        endpointAPIService.getList().$promise.then(function (endpoints) {
             self.endpoints = endpoints;
+        })
+        .catch(function(error) {
+            console.error(error);
         });
 
         self.create = function () {
@@ -22,55 +25,57 @@
                 'on_patch': '',
                 'on_put': '',
                 'on_delete': '',
-                'response': '{}',
-                'queryParams': []
+                'storage': []
             };
 
-            var promise = endpointAPIService.post(newEndpoint);
-            promise.then(function (endpoint) {
-                self.endpoints.push(endpoint);
-                self.makeDraft(endpoint);
-                self.openEditPanel();
-            });
-
-            promise.catch(function(error) {
-                NotificationService.push({
-                    type: NotificationService.types.ERROR,
-                    message: error.data
+            endpointAPIService.post(newEndpoint)
+                .$promise
+                .then(function (endpoint) {
+                    self.endpoints.push(endpoint);
+                    self.makeDraft(endpoint);
+                    self.openEditPanel();
+                })
+                .catch(function(error) {
+                    NotificationService.push({
+                        type: NotificationService.types.ERROR,
+                        message: error.data
+                    });
                 });
-            });
         };
 
         self.remove = function (endpointId) {
             self.inProgress = true;
-            var promise = endpointAPIService.remove(endpointId);
-
-            promise.then(function () {
-                var idx = self.endpoints.findIndex(function(endpoint) {
-                    return endpoint._id === endpointId;
+            endpointAPIService.delete({id: endpointId})
+                .$promise
+                .then(function () {
+                    var idx = self.endpoints.findIndex(function(endpoint) {
+                        return endpoint._id === endpointId;
+                    });
+                    self.closePanel();
+                    self.endpoints.splice(idx, 1);
+                })
+                .catch(function(error) {
+                    console.error(error);
+                })
+                .finally(function() {
+                    self.inProgress = false;
                 });
-                self.closePanel();
-                self.endpoints.splice(idx, 1);
-            });
-
-            promise.finally(function() {
-                self.inProgress = false;
-            });
         };
 
         self.save = function (endpoint) {
             self.inProgress = true;
-            var promise = endpointAPIService.put(endpoint._id, endpoint);
 
-            promise.then(function (updatedEndpoint) {
-                updateEndpointInCollection(self.endpoints, updatedEndpoint);
-            }, function (error) {
-                self.endpointEditErrors = error.data;
-            });
-
-            promise.finally(function () {
-                self.inProgress = false;
-            });
+            endpointAPIService.put({id: endpoint._id}, endpoint)
+                .$promise
+                .then(function (updatedEndpoint) {
+                    updateEndpointInCollection(self.endpoints, updatedEndpoint);
+                })
+                .catch(function (error) {
+                    self.endpointEditErrors = error.data;
+                })
+                .finally(function () {
+                    self.inProgress = false;
+                });
         };
 
         var findIndexById = function (endpointsList, endpointId) {
@@ -90,9 +95,10 @@
         };
 
         self.makeDraft = function (endpoint) {
-            var draft = angular.copy(endpoint.plain());
-            self.endpointEdit = draft;
-            self.setAceEditorContent(self.endpointEdit.response);
+            self.endpointEdit = angular.copy(endpoint);
+
+            // TODO: broken.
+            // self.setAceEditorContent();
         };
 
         self.openEditPanel = function () {
@@ -121,10 +127,10 @@
             self.inProgress = true;
 
             var stopIf = function(data) {
-                return data.status === 200;
+                return data.status === "ok";
             };
 
-            serverAPIService.restart().then(function() {
+            serverAPIService.restart().$promise.then(function() {
                 var promise = pollingService.initialize(serverAPIService.status, stopIf, {
                     nextPollIn: 2000,
                     maxTries: 5
@@ -135,16 +141,15 @@
                         type: NotificationService.types.INFO,
                         message: 'Greetings human, I am the mighty Server and I was able to restart myself successfully.'
                     });
-                });
-
-                promise.catch(function(error) {
+                })
+                .catch(function(error) {
                     NotificationService.push({
                         type: NotificationService.types.ERROR,
                         message: {'server': 'Hey, server restart failed for some reason, cya.'}
                     });
-                });
-
-                promise.finally(function() {
+                    console.error(error);
+                }).
+                finally(function() {
                     self.inProgress = false;
                 });
             });

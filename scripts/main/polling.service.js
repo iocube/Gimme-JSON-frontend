@@ -32,10 +32,10 @@
 
         function polling() {
             currentNumberOfTries += 1;
-            var promise = asyncAction();
-
-            promise.then(handleResponse);
-            promise.catch(handleResponse);
+            asyncAction()
+                .$promise
+                .then(handleResponse)
+                .catch(handleResponse);
         }
 
         function handleResponse(data) {
@@ -43,7 +43,7 @@
                 // stop polling
                 deferred.resolve({reason: reason.STOP_CONDITION, data: data});
                 return;
-            } else if (currentNumberOfTries == maxTries) {
+            } else if (currentNumberOfTries === maxTries) {
                 deferred.reject({reason: reason.MAX_TRIES_REACHED});
                 return;
             }

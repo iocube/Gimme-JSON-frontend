@@ -12,7 +12,7 @@
         </div>
 
         <div class="input-group">
-            <!-- TODO -->
+            <!-- TODO Methods should be tabs?-->
             <label class="input-group__label">Methods</label>
         </div>
 
@@ -24,6 +24,7 @@
             <span class="u-validation-error" ng-bind="self.endpointEditErrors.response"
                   ng-show="form.$error.response"></span>
 
+            <!-- TODO: -->
             <pre class="panel-edit__response ace-editor"
                  ace-editor
                  content="self.endpointEdit.response"
@@ -34,8 +35,7 @@
             <textarea class="ng-hide"
                       name="response"
                       ng-model="self.endpointEdit.response"
-                      required
-                      response-validator></textarea>
+                      required></textarea>
         </div>
 
         <button class="btn btn--save" ng-click="self.save(self.endpointEdit)"

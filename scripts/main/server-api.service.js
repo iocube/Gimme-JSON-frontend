@@ -2,22 +2,16 @@
     'use strict';
 
     angular.module('gimmeJSONApp').factory('serverAPIService', serverAPIService);
-    serverAPIService.$inject = ['Restangular'];
+    serverAPIService.$inject = ['MOCK_SERVER_ENDPOINT', '$resource'];
 
-    function serverAPIService(Restangular) {
-        var baseEndpoint = Restangular.all('/server/');
-
-        function restart() {
-            return baseEndpoint.remove();
-        }
-
-        function status() {
-            return baseEndpoint.one('status').get();
-        }
+    function serverAPIService(MOCK_SERVER_ENDPOINT, $resource) {
+        var endpoint = $resource(
+            MOCK_SERVER_ENDPOINT + '/gimme-mock-server/'
+        );
 
         return {
-            restart: restart,
-            status: status
+            status: endpoint.get,
+            restart: endpoint.delete
         };
     }
 })();
